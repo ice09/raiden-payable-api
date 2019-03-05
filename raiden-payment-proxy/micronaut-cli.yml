@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: raiden.payment.proxy
+---
+testFramework: junit
+sourceLanguage: java

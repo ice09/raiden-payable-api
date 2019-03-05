@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: payable.service
+---
+testFramework: junit
+sourceLanguage: java

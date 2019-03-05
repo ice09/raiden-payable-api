@@ -1,0 +1,5 @@
+micronaut:
+    application:
+        name: raiden-payment-proxy
+    server:
+        port: 9500

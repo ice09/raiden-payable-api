@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: raiden.mock
+---
+testFramework: junit
+sourceLanguage: java

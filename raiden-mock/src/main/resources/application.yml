@@ -1,0 +1,5 @@
+micronaut:
+    application:
+        name: raiden-mock
+    server:
+        port: 9200
