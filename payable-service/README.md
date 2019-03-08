@@ -19,7 +19,6 @@ This external service has no other external dependencies and runs standalone.  T
 | Service | Port |
 | --- | --- |
 | **Camera API** | **9100** |
-| [Receiver Payment Proxy](...) | 9300 | 
 
 ## For native image creation
 

@@ -7,6 +7,7 @@ plugins {
 
 apply plugin:"application"
 apply plugin:"java"
+apply plugin:"maven"
 
 version "0.1"
 group "raiden.payment.sender.proxy"
@@ -19,7 +20,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom 'io.micronaut:micronaut-bom:1.0.4'
+        mavenBom 'io.micronaut:micronaut-bom:1.1.0.M2'
     }
 }
 

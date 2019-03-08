@@ -7,11 +7,11 @@ public class PaymentDto {
 
     public static String eventDescription = "EventPaymentSentSuccess";
 
-    private String initiator;
-    private BigInteger identifier;
-    private Date log_time;
-    private String event;
-    private BigInteger amount;
+    String initiator;
+    BigInteger identifier;
+    Date log_time;
+    String event;
+    BigInteger amount;
 
     public BigInteger getAmount() {
         return amount;

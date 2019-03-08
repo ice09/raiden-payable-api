@@ -3,3 +3,7 @@ micronaut:
         name: raiden-payment-proxy
     server:
         port: 9500
+raiden:
+    node: http://localhost:9200
+external:
+    service: http://localhost:9100

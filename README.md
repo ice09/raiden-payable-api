@@ -1,4 +1,4 @@
-# Payable APIs with Raiden Network Payment Channels [ethereum transaction signer]
+# Payable APIs with Raiden Network Payment Channels [overview]
 
 Implementation of the `Private Wallet` component in the overview. This component signs an identifier, which is needed for correlating payments to service requests, with the sender's private key.  
 This component is for testing purposes only and should not be used with Mainnet private key.

@@ -15,7 +15,7 @@ import java.util.Map;
 public class RaidenMockController {
 
     @Inject
-    private RaidenMockService raidenMockService;
+    RaidenMockService raidenMockService;
 
     @Post("/payments/{token_address}/{target_address}")
     public Map<String, BigInteger> payments(@QueryValue String token_address, @QueryValue String target_address, @Body PaymentDto paymentDto) {

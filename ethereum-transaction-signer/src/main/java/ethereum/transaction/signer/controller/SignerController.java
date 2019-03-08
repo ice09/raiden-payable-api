@@ -18,7 +18,7 @@ public class SignerController {
 
     private Credentials credentials;
 
-    @Value("${SIGNER_PRIVATE_KEY}")
+    @Value("${signer.private.key}")
     String signerPrivateKey;
 
     @Get("/sign")

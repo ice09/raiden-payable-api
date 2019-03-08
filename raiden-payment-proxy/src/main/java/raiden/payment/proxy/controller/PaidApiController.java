@@ -19,13 +19,13 @@ import java.util.List;
 public class PaidApiController {
 
     @Inject
-    private PaymentService paymentService;
+    PaymentService paymentService;
 
-    @Client("${RAIDEN_NODE}/api/v1/payments")
+    @Client("${raiden.node}/api/v1/payments")
     @Inject
     HttpClient httpRaidenClient;
 
-    @Client("${EXTERNAL_SERVICE}")
+    @Client("${external.service}")
     @Inject
     HttpClient httpClient;
 

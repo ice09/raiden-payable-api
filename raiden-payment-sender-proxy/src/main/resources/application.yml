@@ -4,12 +4,12 @@ micronaut:
     server:
         port: 9000
 receiver:
-    address: 0x627306090abaB3A6e1400e9345bC60c78a8BEf57
+    address: "0x627306090abaB3A6e1400e9345bC60c78a8BEf57"
 sender:
-    address: 0x2284737b7c15c6119589854631c31A7E599A3dB3
+    address: "0x2284737b7c15c6119589854631c31A7E599A3dB3"
     signer: http://localhost:9300/
 token:
-    address: 0x0000000000000000000000000000000000000001
+    address: "0x0000000000000000000000000000000000000001"
 raiden:
     node: http://localhost:9200/
     receiver: http://localhost:9500/

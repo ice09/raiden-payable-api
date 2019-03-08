@@ -40,7 +40,7 @@ This external service has no other external dependencies and runs standalone.  T
 # Setup
 
 * Clone project with `git clone` or download the project as a compressed file
-* Set environment variables. Presets are in `application.yml` for Micronaut environment and `raiden-payment-proxy.sh` for native-image usage.
+* Set environment variables. Presets are in `application.yml` for Micronaut environment and `raiden-payment-sender-proxy.sh` for native-image usage.
 
 # Run
 
@@ -48,15 +48,8 @@ This external service has no other external dependencies and runs standalone.  T
 *or*   
 * Build project with `./gradlew run`  
 *or*
-* Run `./raiden-payment-proxy.sh` after building native-image (macos and linux only)
+* Run `./raiden-payment-sender-proxy.sh` after building native-image (macos and linux only)
 
 # Use
 
-Call `http://localhost:9500/api/v1/paymentProposal/0x1/0x2` in HTTP clients like [Restlet Client](https://restlet.com/modules/client/), [SoapUI](https://www.soapui.org/).  
-Call with HTTP POST and body:
-```
-{
-  "identifier": 2,
-  "amount": 100
-}
-```
+Call `http://localhost:9000/api/v1/service/delegate` in HTTP clients like [Restlet Client](https://restlet.com/modules/client/), [SoapUI](https://www.soapui.org/).  

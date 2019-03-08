@@ -3,3 +3,6 @@ micronaut:
         name: ethereum-transaction-signer
     server:
         port: 9300
+signer:
+    private:
+        key: a27fe45bfd9e40ff8ce043f4e8fe6f5dd05c8c6a5ff8494fbe334349500830b5

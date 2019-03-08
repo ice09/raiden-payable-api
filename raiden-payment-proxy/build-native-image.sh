@@ -1,8 +1,7 @@
 ./gradlew assemble
-java -cp build/libs/raiden-payment-proxy-0.1-all.jar io.micronaut.graal.reflect.GraalClassLoadingAnalyzer
 native-image --no-server \
              --class-path build/libs/raiden-payment-proxy-0.1-all.jar \
-             -H:ReflectionConfigurationFiles=build/reflect.json \
+             -H:ReflectionConfigurationFiles=src/main/resources/reflect.json \
              -H:EnableURLProtocols=http \
              -H:IncludeResources="logback.xml|application.yml|META-INF/services/*.*" \
              -H:Name=raiden-payment-proxy \

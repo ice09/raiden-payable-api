@@ -1,2 +1,3 @@
+export SIGNER_PRIVATE_KEY=a27fe45bfd9e40ff8ce043f4e8fe6f5dd05c8c6a5ff8494fbe334349500830b5
 export MICRONAUT_SERVER_PORT=9300
 ./ethereum-transaction-signer

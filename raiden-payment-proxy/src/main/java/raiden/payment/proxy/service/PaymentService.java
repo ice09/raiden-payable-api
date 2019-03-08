@@ -18,9 +18,9 @@ import java.util.Random;
 @Singleton
 public class PaymentService {
 
-    private Map<BigInteger, Payment> paymentCorrelations = new HashMap<>();
+    Map<BigInteger, Payment> paymentCorrelations = new HashMap<>();
 
-    private BigInteger createIdentifier() {
+    BigInteger createIdentifier() {
         return new BigInteger(31, new Random());
     }
 

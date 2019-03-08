@@ -18,25 +18,25 @@ import java.util.Map;
 @Controller("/api/v1")
 public class ServiceController {
 
-    @Value("${RECEIVER_ADDRESS}")
+    @Value("${receiver.address}")
     String receiverAddress; // "0x627306090abaB3A6e1400e9345bC60c78a8BEf57";
 
     /* This sender address must be the Raiden address. For the showcase, it MUST be the address which belongs to the private key in PrivateClientController */
-    @Value("${SENDER_ADDRESS}")
+    @Value("${sender.address}")
     String senderAddress;// "0x2284737b7c15c6119589854631c31A7E599A3dB3";
 
-    @Value("${TOKEN_ADDRESS}")
+    @Value("${token.address}")
     String tokenAddress;
 
-    @Client("${RAIDEN_NODE}/api/v1/payments")
+    @Client("${raiden.node}/api/v1/payments")
     @Inject
     HttpClient httpRaidenClient;
 
-    @Client("${RAIDEN_RECEIVER}/api/v1")
+    @Client("${raiden.receiver}/api/v1")
     @Inject
     HttpClient httpPaymentProxy;
 
-    @Client("${SENDER_SIGNER}/private")
+    @Client("${sender.signer}/private")
     @Inject
     HttpClient httpPrivateClient;
 

@@ -5,12 +5,12 @@ import java.util.Date;
 
 public class Payment {
 
-    private BigInteger amount;
-    private String sender;
-    private String receiver;
-    private BigInteger identifier;
-    private Date modified;
-    private String tokenAddress;
+    BigInteger amount;
+    String sender;
+    String receiver;
+    BigInteger identifier;
+    Date modified;
+    String tokenAddress;
 
     public BigInteger getAmount() {
         return amount;

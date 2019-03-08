@@ -19,7 +19,6 @@ This external service has no other external dependencies and runs standalone. To
 | Service | Port |
 | --- | --- |
 | **Raiden Mock** | **9200** |
-| [Receiver Payment Proxy](...) | 9300 | 
 
 ## For native image creation
 
@@ -39,4 +38,4 @@ This external service has no other external dependencies and runs standalone. To
 
 # Use
 
-Open link `http://localhost:9100/external/service/text` in browser or HTTP clients like [Restlet Client](https://restlet.com/modules/client/), [SoapUI](https://www.soapui.org/) and choose GET HTTP Method.
+Open link `http://localhost:9200/api/v1/payments/0x0/0x1` in browser or HTTP clients like [Restlet Client](https://restlet.com/modules/client/), [SoapUI](https://www.soapui.org/) and choose GET HTTP Method.
