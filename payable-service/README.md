@@ -38,7 +38,8 @@ This external service has no other external dependencies and runs standalone.  T
 
 # Quick Start (macOS only)
                                                                               
-  * Copy macOS-precompiled binary `dist/payable-service` to root directory and run `./payable-service.sh`
+* Copy macOS-precompiled binary `dist/payable-service` to root directory and run `./payable-service.sh`
+
 # Use
 
 Open link `http://localhost:9100/external/service/text` (or `.../image`) in browser or HTTP clients like [Restlet Client](https://restlet.com/modules/client/), [SoapUI](https://www.soapui.org/) and choose GET HTTP Method.
