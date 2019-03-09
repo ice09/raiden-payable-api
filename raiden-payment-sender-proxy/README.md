@@ -23,9 +23,9 @@ This external service has no other external dependencies and runs standalone.  T
 | Service | Port |
 | --- | --- |
 | **Sender Payment Proxy** | **9000** |
-| [Receiver Payment Proxy](...) | 9500 |
-| [Raiden Node](...) | 9200 | 
-| [Ethereum Transaction Signer](...) | 9300 | 
+| [Receiver Payment Proxy](../raiden-payment-proxy) | 9500 |
+| [Raiden Node](../raiden-mock) | 9200 | 
+| [Ethereum Transaction Signer](../ethereum-transaction-signer) | 9300 | 
 
 | Environment Variable | Default Value |
 | --- | --- |

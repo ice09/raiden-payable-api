@@ -19,8 +19,8 @@ This external service has no other external dependencies and runs standalone.  T
 | Service | Port |
 | --- | --- |
 | **Receiver Payment Proxy** | **9500** |
-| [Raiden Node](...) | 9200 | 
-| [External Service: Camera API](...) | 9100 | 
+| [Raiden Node](../raiden-mock) | 9200 | 
+| [External Service: Camera API](../payable-service) | 9100 | 
 
 ## For native image creation
 

@@ -15,11 +15,11 @@ For the complete demo setup, you have to have all the components up and running.
 
 | Service | Port |
 | --- | --- |
-| [Sender Payment Proxy](...) | 9000 |
+| [Sender Payment Proxy](raiden-payment-sender-proxy) | 9000 |
 | [Raiden Node](raiden-mock) | 9200 | 
-| [Ethereum Transaction Signer](...) | 9300 | 
-| [Receiver Payment Proxy](...) | 9500 |
-| [Camera API](...) | 9100 |
+| [Ethereum Transaction Signer](ethereum-transaction-signer) | 9300 | 
+| [Receiver Payment Proxy](raiden-payment-proxy) | 9500 |
+| [Camera API](payable-service) | 9100 |
 
 | Environment Variable | Default Value |
 | --- | --- |
