@@ -1,7 +1,7 @@
 # Payable APIs with Raiden Network Payment Channels [receiver payment sender proxy]
 
 Implementation of the `SenderPaymentProxy` component in the overview. This component wraps the sender's call to the service with the actual payment.  
-The usage should be transparent to the user, he calls the HTTP service locally and executes all steps necessary to send the payment and correlate the service request.
+The usage should be transparent to the user, he calls the HTTP service locally and executes all steps necessary to send the payment and correlate the service request:  
 
 * Requesting the unique payment identifier by the `ReceiverPaymentProxy`
 * Signing the received `identifier`
@@ -25,7 +25,7 @@ This external service has no other external dependencies and runs standalone.  T
 | **Sender Payment Proxy** | **9000** |
 | [Receiver Payment Proxy](...) | 9500 |
 | [Raiden Node](...) | 9200 | 
-| [Sender Transaction Signer](...) | 9300 | 
+| [Ethereum Transaction Signer](...) | 9300 | 
 
 | Environment Variable | Default Value |
 | --- | --- |
@@ -48,7 +48,11 @@ This external service has no other external dependencies and runs standalone.  T
 *or*   
 * Build project with `./gradlew run`  
 *or*
-* Run `./raiden-payment-sender-proxy.sh` after building native-image (macos and linux only)
+* Run `./raiden-payment-sender-proxy.sh` after building native-image (macos and linux or WSL/Windows 10+)
+
+# Quick Start (macOS only)
+                                                                              
+* Copy macOS-precompiled binary `dist/raiden-payment-sender-proxy` to root directory and run `./raiden-payment-sender-proxy.sh`
 
 # Use
 

@@ -37,7 +37,11 @@ This external service has no other external dependencies and runs standalone.  T
 *or*   
 * Build project with `./gradlew run`  
 *or*
-* Run `./raiden-payment-proxy.sh` after building native-image (macos and linux only)
+* Run `./raiden-payment-proxy.sh` after building native-image (macos and linux or WSL/Windows 10+)
+
+# Quick Start (macOS only)
+                                                                              
+* Copy macOS-precompiled binary `dist/raiden-payment-proxy` to root directory and run `./raiden-payment-proxy.sh`
 
 # Use
 

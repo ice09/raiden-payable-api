@@ -34,7 +34,7 @@ This external service has no other external dependencies and runs standalone. To
 *or*   
 * Build project with `./gradlew run`  
 *or*
-* Run `./raiden-mock.sh` after building native-image (macos and linux only, or WSL/Windows 10+)
+* Run `./raiden-mock.sh` after building native-image (macos and linux or WSL/Windows 10+)
 
 # Quick Start (macOS only)
                                                                               
