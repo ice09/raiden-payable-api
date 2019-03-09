@@ -699,7 +699,11 @@
   "allPublicMethods" : true,
   "allDeclaredConstructors" : true
 }, {
-  "name" : "java.util.List",
+  "name" : "java.util.ArrayList",
   "allPublicMethods" : true,
   "allDeclaredConstructors" : true
-} ]
+}, {
+  "name" : "io.micronaut.core.type.DefaultArgumentValue",
+  "allPublicMethods" : true,
+  "allDeclaredConstructors" : true
+}]
