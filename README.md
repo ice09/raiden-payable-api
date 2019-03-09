@@ -1,6 +1,7 @@
 # Payable APIs with Raiden Network Payment Channels [overview]
 
-Root project for all components necessary for the demo setup of the 
+Umbrella project for all components necessary for the Payable APIs demo setup.  
+Read more about the objective of this demo and instructions for running it here: http://blockchainers.org/index.php/2019/02/26/payable-apis-with-raiden-network-payment-channels  
 
 ![Integration overview](docs/img/paidAPI.png)
 
