@@ -1,6 +1,6 @@
 # Payable APIs with Raiden Network Payment Channels [ethereum transaction signer]
 
-Implementation of the `Private Wallet` component in the overview. This component signs an identifier, which is needed for correlating payments to service requests, with the sender's private key.  
+Implementation of the `Private Wallet` component in the overview. This component signs an identifier (ie. a `java.math.BigInteger`), which is necessary for correlating payments to service requests, with the sender's private key.  
 This component is for testing purposes only and should not be used with Mainnet private key.
 
 ![Integration overview](docs/img/paidAPI.png)
@@ -40,7 +40,11 @@ This external service has no other external dependencies and runs standalone.  T
 *or*   
 * Build project with `./gradlew run`  
 *or*
-* Run `./ethereum-transaction-signer.sh` after building native-image (macos and linux only)
+* Run `./ethereum-transaction-signer.sh` after building native-image (macos and linux only, or WSL/Windows 10+)
+
+# Quick Start (macOS only)
+
+* Copy macOS-precompiled binary `dist/ethereum-transaction-signer` to root directory and run `./ethereum-transaction-signer.sh`
 
 # Use
 
