@@ -16,7 +16,7 @@ For the complete demo setup, you have to have all the components up and running.
 | Service | Port |
 | --- | --- |
 | [Sender Payment Proxy](...) | 9000 |
-| [Raiden Node](...) | 9200 | 
+| [Raiden Node](raiden-mock) | 9200 | 
 | [Ethereum Transaction Signer](...) | 9300 | 
 | [Receiver Payment Proxy](...) | 9500 |
 | [Camera API](...) | 9100 |
