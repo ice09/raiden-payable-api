@@ -1,7 +1,6 @@
 # Payable APIs with Raiden Network Payment Channels [overview]
 
-Implementation of the `Private Wallet` component in the overview. This component signs an identifier, which is needed for correlating payments to service requests, with the sender's private key.  
-This component is for testing purposes only and should not be used with Mainnet private key.
+Root project for all components necessary for the demo setup of the 
 
 ![Integration overview](docs/img/paidAPI.png)
 
@@ -14,16 +13,20 @@ This component is for testing purposes only and should not be used with Mainnet 
 
 For the complete demo setup, you have to have all the components up and running.
 
-This external service has no other external dependencies and runs standalone.  To use it with the other components, it should be served on port 9300.
-
-
 | Service | Port |
 | --- | --- |
-| **Sender Transaction Signer** | **9300** | 
+| [Sender Payment Proxy](...) | 9000 |
+| [Raiden Node](...) | 9200 | 
+| [Ethereum Transaction Signer](...) | 9300 | 
+| [Receiver Payment Proxy](...) | 9500 |
+| [Camera API](...) | 9100 |
 
 | Environment Variable | Default Value |
 | --- | --- |
-| **SIGNER_PRIVATE_KEY** | **a27fe45bfd9e40ff8ce043f4e8fe6f5dd05c8c6a5ff8494fbe334349500830b5** |
+| RECEIVER_ADDRESS | 0x627306090abaB3A6e1400e9345bC60c78a8BEf57 |
+| SENDER_ADDRESS | 0x2284737b7c15c6119589854631c31A7E599A3dB3 |
+| TOKEN_ADDRESS | 0x0000000000000000000000000000000000000001 |
+| SIGNER_PRIVATE_KEY | a27fe45bfd9e40ff8ce043f4e8fe6f5dd05c8c6a5ff8494fbe334349500830b5 (see SENDER_ADDRESS) |
 
 ## For native image creation
 
@@ -40,7 +43,11 @@ This external service has no other external dependencies and runs standalone.  T
 *or*   
 * Build project with `./gradlew run`  
 *or*
-* Run `./ethereum-transaction-signer.sh` after building native-image (macos and linux only)
+* Run `./ethereum-transaction-signer.sh` after building native-image (macos and linux only, or WSL/Windows 10+)
+
+# Quick Start (macOS only)
+
+* Copy macOS-precompiled binary `dist/ethereum-transaction-signer` to root directory and run `./ethereum-transaction-signer.sh`
 
 # Use
 
