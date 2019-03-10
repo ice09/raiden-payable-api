@@ -41,7 +41,8 @@ public class ServiceController {
     HttpClient httpPrivateClient;
 
     @Get("/service/delegate")
-    public String serviceCall() {
+    @Produces(MediaType.ALL)
+    public byte[] serviceCall() {
         checkConfiguration();
 
         // Create data transfer object for payment facade
@@ -60,7 +61,7 @@ public class ServiceController {
 
         // Call Service proxy with signed identifier to correlate payment and service request
         // If signed identifier and payment identifier match, the service is executed
-        return httpPaymentProxy.toBlocking().retrieve(HttpRequest.POST("/service?identifier=" + res.getIdentifier() + "&signature=" + signature.get("signature"), in), String.class);
+        return httpPaymentProxy.toBlocking().retrieve(HttpRequest.POST("/service?identifier=" + res.getIdentifier() + "&signature=" + signature.get("signature"), in), byte[].class);
     }
 
     private void checkConfiguration() {

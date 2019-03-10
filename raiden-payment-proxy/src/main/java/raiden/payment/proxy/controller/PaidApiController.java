@@ -44,7 +44,8 @@ public class PaidApiController {
     }
 
     @Post("/service")
-    public String serviceProxyCall(@QueryValue String identifier, @QueryValue String signature) {
+    @Produces(MediaType.ALL)
+    public byte[] serviceProxyCall(@QueryValue String identifier, @QueryValue String signature) {
         try {
             // Ecrecover address from sigature and identifier
             String signer = paymentService.checkSignature(new BigInteger(identifier), signature);
@@ -59,7 +60,7 @@ public class PaidApiController {
                 paymentService.removePaymentProposal(new BigInteger(identifier));
 
                 // Call external service
-                return httpClient.toBlocking().retrieve(HttpRequest.GET("/external/service/text"), String.class);
+                return httpClient.toBlocking().retrieve(HttpRequest.GET("/external/service/image"), byte[].class);
             }
         } catch (Exception ex) {
             throw new IllegalStateException(ex);
