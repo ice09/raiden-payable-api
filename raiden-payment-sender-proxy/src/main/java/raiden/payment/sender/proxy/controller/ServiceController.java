@@ -40,33 +40,72 @@ public class ServiceController {
     @Inject
     HttpClient httpPrivateClient;
 
-    @Get("/service/delegate")
+    @Get("/service/delegate/image")
     @Produces(MediaType.ALL)
-    public byte[] serviceCall() {
-        checkConfiguration();
-
-        // Create data transfer object for payment facade
-        PaymentDto in = new PaymentDto();
-        in.setAmount(BigInteger.valueOf(100));
-        in.setInitiator(senderAddress);
-
-        // Create PaymentProposal and receive identifier to use in payment to correlate payment and service request
-        PaymentDto res = httpPaymentProxy.toBlocking().retrieve(HttpRequest.POST("/paymentProposal/" + tokenAddress + "/" + receiverAddress, in), PaymentDto.class);
-
-        // Send Payment with identifier
-        Map<String, BigInteger> result = httpRaidenClient.toBlocking().retrieve(HttpRequest.POST("/" + tokenAddress + "/" + receiverAddress, res), Argument.of(Map.class, String.class, BigInteger.class));
-
-        // Sign identifier with private key
-        Map<String, String> signature = httpPrivateClient.toBlocking().retrieve(HttpRequest.GET("/sign?identifier=" + result.get("identifier").toString()), Argument.of(Map.class, String.class, String.class));
+    public byte[] serviceCallImage() {
+        CheckPayment checkPayment = new CheckPayment().invoke();
+        PaymentDto in = checkPayment.getIn();
+        PaymentDto res = checkPayment.getRes();
+        Map<String, String> signature = checkPayment.getSignature();
 
         // Call Service proxy with signed identifier to correlate payment and service request
         // If signed identifier and payment identifier match, the service is executed
-        return httpPaymentProxy.toBlocking().retrieve(HttpRequest.POST("/service?identifier=" + res.getIdentifier() + "&signature=" + signature.get("signature"), in), byte[].class);
+        return httpPaymentProxy.toBlocking().retrieve(HttpRequest.POST("/service/image?identifier=" + res.getIdentifier() + "&signature=" + signature.get("signature"), in), byte[].class);
+    }
+
+    @Get("/service/delegate/text")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String serviceCallText() {
+        CheckPayment checkPayment = new CheckPayment().invoke();
+        PaymentDto in = checkPayment.getIn();
+        PaymentDto res = checkPayment.getRes();
+        Map<String, String> signature = checkPayment.getSignature();
+
+        // Call Service proxy with signed identifier to correlate payment and service request
+        // If signed identifier and payment identifier match, the service is executed
+        return httpPaymentProxy.toBlocking().retrieve(HttpRequest.POST("/service/text?identifier=" + res.getIdentifier() + "&signature=" + signature.get("signature"), in), String.class);
     }
 
     private void checkConfiguration() {
         if ((receiverAddress == null) || (senderAddress == null) || (tokenAddress == null)) {
             throw new IllegalStateException("Required environment variables are not set.");
+        }
+    }
+
+    private class CheckPayment {
+        private PaymentDto in;
+        private PaymentDto res;
+        private Map<String, String> signature;
+
+        public PaymentDto getIn() {
+            return in;
+        }
+
+        public PaymentDto getRes() {
+            return res;
+        }
+
+        public Map<String, String> getSignature() {
+            return signature;
+        }
+
+        public CheckPayment invoke() {
+            checkConfiguration();
+
+            // Create data transfer object for payment facade
+            in = new PaymentDto();
+            in.setAmount(BigInteger.valueOf(100));
+            in.setInitiator(senderAddress);
+
+            // Create PaymentProposal and receive identifier to use in payment to correlate payment and service request
+            res = httpPaymentProxy.toBlocking().retrieve(HttpRequest.POST("/paymentProposal/" + tokenAddress + "/" + receiverAddress, in), PaymentDto.class);
+
+            // Send Payment with identifier
+            Map<String, BigInteger> result = httpRaidenClient.toBlocking().retrieve(HttpRequest.POST("/" + tokenAddress + "/" + receiverAddress, res), Argument.of(Map.class, String.class, BigInteger.class));
+
+            // Sign identifier with private key
+            signature = httpPrivateClient.toBlocking().retrieve(HttpRequest.GET("/sign?identifier=" + result.get("identifier").toString()), Argument.of(Map.class, String.class, String.class));
+            return this;
         }
     }
 }

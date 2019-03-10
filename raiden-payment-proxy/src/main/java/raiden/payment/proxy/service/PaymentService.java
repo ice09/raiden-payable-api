@@ -10,10 +10,7 @@ import raiden.payment.proxy.service.dto.PaymentDto;
 
 import javax.inject.Singleton;
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Singleton
 public class PaymentService {
@@ -22,6 +19,14 @@ public class PaymentService {
 
     BigInteger createIdentifier() {
         return new BigInteger(31, new Random());
+    }
+
+    public Payment retrievePaymentProposal(String identifier, String signature) {
+        // Ecrecover address from sigature and identifier
+        String signer = checkSignature(new BigInteger(identifier), signature);
+
+        // Match and retrieve PaymentProposal
+        return matchPaymentProposal(new BigInteger(identifier), signer);
     }
 
     public BigInteger storePaymentProposal(String token_address, String target_address, PaymentDto paymentDto) {
@@ -36,7 +41,14 @@ public class PaymentService {
         return payment.getIdentifier();
     }
 
-    public Payment matchPaymentProposal(BigInteger identifier, String signer) {
+    public boolean removePaymentProposal(BigInteger identifier) {
+        if (paymentCorrelations.remove(identifier) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    private Payment matchPaymentProposal(BigInteger identifier, String signer) {
         if (paymentCorrelations.containsKey(identifier)) {
             Payment foundPayment = paymentCorrelations.get(identifier);
             return foundPayment;
@@ -44,7 +56,7 @@ public class PaymentService {
         throw new IllegalStateException("Identifier does not exist or Payment is already settled.");
     }
 
-    public String checkSignature(BigInteger identifier, String signature) {
+    private String checkSignature(BigInteger identifier, String signature) {
         String expectedAddress = paymentCorrelations.get(identifier).getSender();
         byte[] signatureAsBytes = Numeric.hexStringToByteArray(signature);
         byte[] hashedIdentifier = Hash.sha3(Numeric.toBytesPadded(identifier, 32));
@@ -62,7 +74,4 @@ public class PaymentService {
         throw new IllegalStateException("Signature and Sender of Payment do not match.");
     }
 
-    public void removePaymentProposal(BigInteger identifier) {
-        paymentCorrelations.remove(identifier);
-    }
 }

@@ -38,26 +38,28 @@ public class PaidApiController {
         return paymentDto;
     }
 
-    private boolean isPaymentMatch(Payment payment) {
-        List<Payment> payments = httpRaidenClient.toBlocking().retrieve(HttpRequest.GET("/" + payment.getTokenAddress() + "/" + payment.getReceiver()), Argument.of(List.class, Payment.class));
-        return payments.stream().filter(it -> payment.getTokenAddress().equals(it.getTokenAddress()) && payment.getReceiver().equals(it.getReceiver()) && payment.getIdentifier().equals(it.getIdentifier())).count() == 1;
+    @Post("/service/text")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String serviceProxyCallText(@QueryValue String identifier, @QueryValue String signature) {
+        try {
+            // Check that there has been exactly one PaymentProposal (add amount check here)
+            if (checkPaidAndRemovePaymentProposal(identifier, signature)) {
+
+                // Call external service
+                return httpClient.toBlocking().retrieve(HttpRequest.GET("/external/service/text"), String.class);
+            }
+        } catch (Exception ex) {
+            throw new IllegalStateException(ex);
+        }
+        throw new IllegalStateException("Pay the bill first!");
     }
 
-    @Post("/service")
+    @Post("/service/image")
     @Produces(MediaType.ALL)
-    public byte[] serviceProxyCall(@QueryValue String identifier, @QueryValue String signature) {
+    public byte[] serviceProxyCallImage(@QueryValue String identifier, @QueryValue String signature) {
         try {
-            // Ecrecover address from sigature and identifier
-            String signer = paymentService.checkSignature(new BigInteger(identifier), signature);
-
-            // Match and retrieve PaymentProposal
-            Payment proposedPayment = paymentService.matchPaymentProposal(new BigInteger(identifier), signer);
-
             // Check that there has been exactly one PaymentProposal (add amount check here)
-            boolean isPaid = isPaymentMatch(proposedPayment);
-            if (isPaid) {
-                // Remove matched PaymentProposal
-                paymentService.removePaymentProposal(new BigInteger(identifier));
+            if (checkPaidAndRemovePaymentProposal(identifier, signature)) {
 
                 // Call external service
                 return httpClient.toBlocking().retrieve(HttpRequest.GET("/external/service/image"), byte[].class);
@@ -67,5 +69,22 @@ public class PaidApiController {
         }
         throw new IllegalStateException("Pay the bill first!");
     }
+
+    private boolean checkPaidAndRemovePaymentProposal(String identifier, String signature) {
+        // Ecrecover address from sigature and identifier
+        Payment proposedPayment = paymentService.retrievePaymentProposal(identifier, signature);
+        boolean isPaid = isPaymentMatch(proposedPayment);
+        if (isPaid) {
+            // Remove matched PaymentProposal
+            return paymentService.removePaymentProposal(new BigInteger(identifier));
+        }
+        return false;
+    }
+
+    private boolean isPaymentMatch(Payment payment) {
+        List<Payment> payments = httpRaidenClient.toBlocking().retrieve(HttpRequest.GET("/" + payment.getTokenAddress() + "/" + payment.getReceiver()), Argument.of(List.class, Payment.class));
+        return payments.stream().filter(it -> payment.getTokenAddress().equals(it.getTokenAddress()) && payment.getReceiver().equals(it.getReceiver()) && payment.getIdentifier().equals(it.getIdentifier())).count() == 1;
+    }
+
 
 }
