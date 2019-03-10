@@ -18,7 +18,7 @@ public class ExternalServiceController {
 
     @Get("/service/text")
     @Produces(MediaType.TEXT_PLAIN)
-    public String servicePlain(@Header("identifier") @Nullable String identifier) {
+    public String serviceText(@Header("identifier") @Nullable String identifier) {
         return "This answer has just cost you some Tokens. The header 'identifier' was [" + ((identifier == null) ? "EMPTY" : identifier) + "]. Have fun!";
     }
 
