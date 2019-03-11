@@ -32,3 +32,8 @@ For the complete demo setup, you have to have all the components up and running.
 # Use
 
 Call `http://localhost:9000/api/v1/service/delegate` in browser or HTTP clients like [Restlet Client](https://restlet.com/modules/client/), [SoapUI](https://www.soapui.org/) and choose GET HTTP Method.
+
+# Check
+
+Call `http://localhost:9200/api/v1/payments/0x0000000000000000000000000000000000000001/0x627306090abaB3A6e1400e9345bC60c78a8BEf57` in browser or HTTP clients like [Restlet Client](https://restlet.com/modules/client/), [SoapUI](https://www.soapui.org/) and choose GET HTTP Method.  
+For each request, the Payment and it's attributes like `identifier`, `sender`, etc. should be listed.
