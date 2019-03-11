@@ -24,9 +24,9 @@ For the complete demo setup, you have to have all the components up and running.
 
 | Environment Variable | Default Value | Component |
 | --- | --- | --- |
-| RECEIVER_ADDRESS | 0x627306090abaB3A6e1400e9345bC60c78a8BEf57 | Receiver/Sender Payment Proxy |
-| SENDER_ADDRESS | 0x2284737b7c15c6119589854631c31A7E599A3dB3 | Receiver/Sender Payment Proxy |
-| TOKEN_ADDRESS | 0x0000000000000000000000000000000000000001 | Receiver/Sender Payment Proxy |
+| RECEIVER_ADDRESS | 0x627306090abaB3A6e1400e9345bC60c78a8BEf57 | Sender Payment Proxy |
+| SENDER_ADDRESS | 0x2284737b7c15c6119589854631c31A7E599A3dB3 | Sender Payment Proxy |
+| TOKEN_ADDRESS | 0x0000000000000000000000000000000000000001 | Sender Payment Proxy |
 | SIGNER_PRIVATE_KEY | a27fe45bfd9e40ff8ce043f4e8fe6f5dd05c8c6a5ff8494fbe334349500830b5 (see SENDER_ADDRESS) | Ethereum Transaction Signer |
 
 # Use
